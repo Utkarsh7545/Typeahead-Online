@@ -24,11 +24,7 @@ const App = () => {
       }
     };
 
-    const delayDebounce = setTimeout(() => {
-      fetchSuggestions();
-    }, 300);
-
-    return () => clearTimeout(delayDebounce);
+    fetchSuggestions();
   }, [query]);
 
   const handleChange = (e) => {
