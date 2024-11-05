@@ -23,13 +23,13 @@ const App = () => {
         setShowSuggestions(false);
       }
     };
+  
+    const delayDebounce = setTimeout(() => {
+      fetchSuggestions();
+    }, 300);
 
-    fetchSuggestions();
+    return () => clearTimeout(delayDebounce);
   }, [query]);
-
-  const handleChange = (e) => {
-    setQuery(e.target.value);
-  };
 
   const handleClick = (username) => {
     setQuery(username);
@@ -59,7 +59,7 @@ const App = () => {
         type="text"
         placeholder="Search GitHub users..."
         value={query}
-        onChange={handleChange}
+        onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handleKeyDown}
       />
       {showSuggestions && query && (
